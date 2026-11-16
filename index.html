@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -341,7 +340,6 @@
         var EMAILJS = { service: "service_gv19eva", template: "template_hmu5e0d", key: "FCHIEY5wBbpMBMwwA" };
         if (window.emailjs) emailjs.init({ publicKey: EMAILJS.key });
 
-        /* Services: progressive enhancement. Content is already in the HTML; JS turns it into tabs. */
         var tl = document.getElementById("tl"), sel = document.getElementById("sel");
         var panels = [].slice.call(document.querySelectorAll("#panels .svc")), tabs = [];
         function show(i) {
