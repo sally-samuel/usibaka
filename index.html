@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -8,10 +9,9 @@
         content="Usibaka Oil and Gas Limited: petroleum exploration and production, drilling and well services, crude sale, condensates, fuel supply and engineering solutions from Lagos, Nigeria.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://www.usibakaoilandgas.com/">
-    <meta name="google-site-verification" content="XavnwWLcwMlV9gMZFx0vCv5O8F9-yN5nF2mfX1uPbPs" />
-    <meta name="theme-color" content="#0b1a4a">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Usibaka Oil and Gas Limited">
+    <meta name="google-site-verification" content="bqeHG2sZ-NauTvfs1Z_ekC4FXHL7016hOKGQ_i0pD_E" />
     <meta property="og:locale" content="en_NG">
     <meta property="og:url" content="https://www.usibakaoilandgas.com/">
     <meta property="og:title" content="Usibaka Oil and Gas Limited | Oil, Gas, Drilling &amp; Fuel Supply in Nigeria">
@@ -23,11 +23,11 @@
     <meta property="og:image:alt" content="Usibaka Oil and Gas Limited logo">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Usibaka Oil and Gas Limited">
-    <meta name="twitter:description"content="Oil, gas, drilling and fuel supply from Lagos, Nigeria. Powering progress. Fuelling possibilities.">
+    <meta name="twitter:description"
+        content="Oil, gas, drilling and fuel supply from Lagos, Nigeria. Powering progress. Fuelling possibilities.">
     <meta name="twitter:image" content="https://www.usibakaoilandgas.com/images/og-image.jpg">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
     <link rel="preload" as="image" href="./images/logo.webp" type="image/webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +94,7 @@
     </script>
 
     <style>
-       
+
     </style>
 </head>
 
@@ -106,7 +106,11 @@
             <a class="brand" href="#top" aria-label="Usibaka Oil and Gas Limited, home">
                 <img src="./images/mark.webp" alt="" width="160" height="166"><span>USIBAKA</span>
             </a>
-            <nav aria-label="Primary">
+            <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"
+                aria-controls="primary-navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="primary-navigation" aria-label="Primary">
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
@@ -341,6 +345,7 @@
         var EMAILJS = { service: "service_gv19eva", template: "template_hmu5e0d", key: "FCHIEY5wBbpMBMwwA" };
         if (window.emailjs) emailjs.init({ publicKey: EMAILJS.key });
 
+        /* Services: progressive enhancement. Content is already in the HTML; JS turns it into tabs. */
         var tl = document.getElementById("tl"), sel = document.getElementById("sel");
         var panels = [].slice.call(document.querySelectorAll("#panels .svc")), tabs = [];
         function show(i) {
@@ -357,6 +362,27 @@
             tl.appendChild(b); tabs.push(b)
         });
         show(0);
+
+        /* Responsive primary navigation */
+        var menuToggle = document.querySelector(".menu-toggle");
+        var primaryNavigation = document.getElementById("primary-navigation");
+        function setNavigationOpen(open) {
+            menuToggle.setAttribute("aria-expanded", open);
+            menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+            document.querySelector(".site-header").classList.toggle("menu-open", open);
+        }
+        menuToggle.onclick = function () {
+            setNavigationOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+        };
+        primaryNavigation.onclick = function (e) {
+            if (e.target.closest("a")) setNavigationOpen(false);
+        };
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+                setNavigationOpen(false);
+                menuToggle.focus();
+            }
+        });
 
         /* Scroll gauge (decorative) */
         var L = [[0, "Surface: the rig is up and ready."], [.25, "Drilling through the overburden."], [.5, "Reaching the reservoir."], [.75, "Production processing and supply."], [.95, "Delivered: energy for today."]];
